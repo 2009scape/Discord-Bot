@@ -1,0 +1,27 @@
+{
+  "name": "rs-2009-discord-bot",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node index.js",
+    "eslint": "eslint ./",
+    "test": "eslint ./"
+  },
+  "author": "RedSparr0w",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/uws": "^10.149.0",
+    "bufferutil": "^4.0.1",
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0",
+    "erlpack": "github:discordapp/erlpack",
+    "libsodium-wrappers": "^0.7.6",
+    "mysql": "^2.18.1",
+    "node-opus": "^0.2.9",
+    "opusscript": "0.0.6",
+    "table": "^5.4.6"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0"
+  }
+}
