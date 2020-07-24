@@ -1,4 +1,6 @@
-const { error, RuneScape, tablePages, postPages } = require('../helpers.js');
+const { error } = require("../helpers/logging.js");
+const { tablePages, postPages } = require("../helpers/functions.js");
+const { RuneScape } = require('../helpers/leaderboard.js');
 const { connection, connection_server } = require('../database.js');
 
 module.exports = {

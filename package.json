@@ -8,7 +8,7 @@
     "test": "eslint ./"
   },
   "author": "RedSparr0w",
-  "license": "ISC",
+  "license": "GPL",
   "dependencies": {
     "@discordjs/uws": "^10.149.0",
     "bufferutil": "^4.0.1",
