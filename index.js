@@ -3,7 +3,7 @@ const fs = require("fs");
 const Discord = require("discord.js");
 const { prefix } = require("./config.json");
 const { info, warn, error } = require("./helpers/logging.js");
-const { RunOnInterval } = require("./helpers/RunOnInterval.class");
+const RunOnInterval = require("./helpers/RunOnInterval.class.js");
 const { updateLeaderboard } = require("./helpers/leaderboard");
 const { dailyMessage } = require("./helpers/dailyMessage");
 const { connection } = require("./database.js");
@@ -173,6 +173,10 @@ client
 
 function login(token, attempt = 1) {
   info("Logging in...");
+  if (!token) {
+    error("There's no Discord token. See the README for details.");
+  }
+
   client.login(token).catch((e) => {
     if (e.code == "ETIMEDOUT") {
       const minutes = Math.min(attempt, 10);

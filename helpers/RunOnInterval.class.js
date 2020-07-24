@@ -100,4 +100,4 @@ class RunOnInterval {
   }
 }
 
-module.exports = { RunOnInterval };
+module.exports = RunOnInterval;

@@ -1,6 +1,6 @@
 {
-  "name": "rs-2009-discord-bot",
-  "version": "1.0.0",
+  "name": "2009scape-discord",
+  "version": "2.0.0",
   "description": "",
   "scripts": {
     "start": "node index.js",
