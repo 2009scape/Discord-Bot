@@ -1,4 +1,5 @@
-const { error, tablePages, postPages } = require('../helpers.js');
+const { error } = require("../helpers/logging.js");
+const { tablePages, postPages } = require("../helpers/functions.js");
 const { connection_server } = require('../database.js');
 
 module.exports = {

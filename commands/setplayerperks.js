@@ -1,4 +1,4 @@
-const { error } = require('../helpers.js');
+const { error } = require("../helpers/logging.js");
 const { connection } = require('../database.js');
 
 module.exports = {
