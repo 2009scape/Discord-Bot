@@ -45,7 +45,7 @@ client.once("ready", async () => {
         updateLeaderboard(client, "HARDCORE");
       },
       true
-    );/*
+    );
     new RunOnInterval(
       6e4, //1 Minute
       async () => {
@@ -58,7 +58,7 @@ client.once("ready", async () => {
         );
       },
       true
-    );*/
+    );
   });
 });
 
