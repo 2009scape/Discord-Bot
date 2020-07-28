@@ -26,27 +26,28 @@ const cooldowns = new Discord.Collection();
 client.once("ready", async () => {
   info(`Logged in as ${client.user.tag}!`);
 
+
   // Start our functions that run on specific intervals
-  client.guilds.forEach((guild) => {
+  client.guilds.cache.forEach((guild) => {
     new RunOnInterval(
-      9 * 60 * 6e4 /* 9 Hours */,
+      9 * 60 * 6e4, //9 hours
       () => {
-        dailyMessage(guild);
+        dailyMessage(client);
       },
       false
     );
     new RunOnInterval(
-      60 * 6e4 /* 1 Hour */,
+      60 * 6e4, //1 Hour
       () => {
-        updateLeaderboard(guild, "NONE");
-        updateLeaderboard(guild, "STANDARD");
-        updateLeaderboard(guild, "ULTIMATE");
-        updateLeaderboard(guild, "HARDCORE");
+        updateLeaderboard(client, "NONE");
+        updateLeaderboard(client, "STANDARD");
+        updateLeaderboard(client, "ULTIMATE");
+        updateLeaderboard(client, "HARDCORE");
       },
       true
-    );
+    );/*
     new RunOnInterval(
-      6e4 /* 1 Minute */,
+      6e4, //1 Minute
       async () => {
         const results = await connection
           .query("SELECT COUNT(*) AS players FROM `members` WHERE online=1")
@@ -57,7 +58,7 @@ client.once("ready", async () => {
         );
       },
       true
-    );
+    );*/
   });
 });
 
@@ -191,4 +192,5 @@ function login(token, attempt = 1) {
     }
   });
 }
+
 login(process.env.DISCORD_TOKEN);
