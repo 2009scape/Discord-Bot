@@ -10,9 +10,8 @@
   "author": "RedSparr0w",
   "license": "GPL",
   "dependencies": {
-    "@discordjs/uws": "^10.149.0",
     "bufferutil": "^4.0.1",
-    "discord.js": "^11.5.1",
+    "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "erlpack": "github:discordapp/erlpack",
     "libsodium-wrappers": "^0.7.6",

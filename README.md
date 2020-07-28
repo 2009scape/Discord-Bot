@@ -13,5 +13,5 @@
 This error occurs when your node version is too new.
 
 1. Install nvm
-1. `nvm install 10.22.0`
-2. `nvm use 10.22.0`
+1. `nvm install 12.18.3`
+2. `nvm use 12.18.3`
