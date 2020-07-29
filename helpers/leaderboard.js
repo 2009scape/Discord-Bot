@@ -229,8 +229,15 @@ function updateLeaderboard(client, ironmanMode = "NONE", reaction = "null") {
 async function listenToLeaderboardReactions(client) {
   client.on("messageReactionAdd", async (reaction, user) => {
     await reaction.fetch();
-    if (reaction.message.id === leaderboard_message_id) {
-      updateLeaderboard(client, "NONE", reaction.emoji.id);
+    switch (reaction.message.id) {
+      case leaderboard_message_id:
+        return updateLeaderboard(client, "NONE", reaction.emoji.id);
+      case leaderboard_ironman_message_id:
+        return updateLeaderboard(client, "IRONMAN", reaction.emoji.id);
+      case leaderboard_ultimate_ironman_message_id:
+        return updateLeaderboard(client, "ULTIMATE", reaction.emoji.id);
+      case leaderboard_hardcore_ironman_message_id:
+        return updateLeaderboard(client, "HARDCORE", reaction.emoji.id);
     }
   });
 
