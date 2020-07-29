@@ -233,11 +233,11 @@ async function listenToLeaderboardReactions(client) {
       case leaderboard_message_id:
         return updateLeaderboard(client, "NONE", reaction.emoji.id);
       case leaderboard_ironman_message_id:
-        return updateLeaderboard(client, "IRONMAN", reaction.emoji.id);
-      case leaderboard_ultimate_ironman_message_id:
-        return updateLeaderboard(client, "ULTIMATE", reaction.emoji.id);
+        return updateLeaderboard(client, "STANDARD", reaction.emoji.id);
       case leaderboard_hardcore_ironman_message_id:
         return updateLeaderboard(client, "HARDCORE", reaction.emoji.id);
+      case leaderboard_ultimate_ironman_message_id:
+        return updateLeaderboard(client, "ULTIMATE", reaction.emoji.id);
     }
   });
 
