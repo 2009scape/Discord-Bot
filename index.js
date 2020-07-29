@@ -1,14 +1,19 @@
 require("dotenv").config();
 const fs = require("fs");
 const Discord = require("discord.js");
-const { prefix } = require("./config.json");
+const { prefix, leaderboard_message_id } = require("./config.json");
 const { info, warn, error } = require("./helpers/logging.js");
 const RunOnInterval = require("./helpers/RunOnInterval.class.js");
-const { updateLeaderboard } = require("./helpers/leaderboard");
+const {
+  updateLeaderboard,
+  listenToLeaderboardReactions,
+} = require("./helpers/leaderboard");
 const { dailyMessage } = require("./helpers/dailyMessage");
 const { connection } = require("./database.js");
 
-const client = new Discord.Client();
+const client = new Discord.Client({
+  partials: ["MESSAGE", "CHANNEL", "REACTION"],
+});
 client.commands = new Discord.Collection();
 
 // Load commands
@@ -26,40 +31,38 @@ const cooldowns = new Discord.Collection();
 client.once("ready", async () => {
   info(`Logged in as ${client.user.tag}!`);
 
-
+  listenToLeaderboardReactions(client);
   // Start our functions that run on specific intervals
-  client.guilds.cache.forEach((guild) => {
-    new RunOnInterval(
-      9 * 60 * 6e4, //9 hours
-      () => {
-        dailyMessage(client);
-      },
-      false
-    );
-    new RunOnInterval(
-      60 * 6e4, //1 Hour
-      () => {
-        updateLeaderboard(client, "NONE");
-        updateLeaderboard(client, "STANDARD");
-        updateLeaderboard(client, "ULTIMATE");
-        updateLeaderboard(client, "HARDCORE");
-      },
-      true
-    );
-    new RunOnInterval(
-      6e4, //1 Minute
-      async () => {
-        const results = await connection
-          .query("SELECT COUNT(*) AS players FROM `members` WHERE online=1")
-          .catch(error);
-        const players = results[0] ? results[0].players : 0;
-        client.user.setActivity(
-          `${players} Player${players != 1 ? "s" : ""} Online`
-        );
-      },
-      true
-    );
-  });
+  new RunOnInterval(
+    9 * 60 * 6e4, //9 hours
+    () => {
+      dailyMessage(client);
+    },
+    false
+  );
+  new RunOnInterval(
+    60 * 6e4, //1 Hour
+    () => {
+      updateLeaderboard(client, "NONE");
+      updateLeaderboard(client, "STANDARD");
+      updateLeaderboard(client, "ULTIMATE");
+      updateLeaderboard(client, "HARDCORE");
+    },
+    true
+  );
+  new RunOnInterval(
+    6e4, //1 Minute
+    async () => {
+      const results = await connection
+        .query("SELECT COUNT(*) AS players FROM `members` WHERE online=1")
+        .catch(error);
+      const players = results[0] ? results[0].players : 0;
+      client.user.setActivity(
+        `${players} Player${players != 1 ? "s" : ""} Online`
+      );
+    },
+    true
+  );
 });
 
 client

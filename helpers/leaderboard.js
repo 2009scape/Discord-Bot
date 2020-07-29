@@ -175,7 +175,6 @@ function updateLeaderboard(client, ironmanMode = "NONE", reaction = "null") {
 
         // Get the results
         const results = await getTop(25, skill_id, ironmanMode);
-
         const output = [
           `${
             ironmanModes[ironmanMode].icon || ironmanModes.NONE.icon
@@ -200,55 +199,49 @@ function updateLeaderboard(client, ironmanMode = "NONE", reaction = "null") {
           "_React with a skill emoji to change leaderboards._",
         ];
 
-        // Update the message
-        if (leaderboard_message.reactions.size) {
-          //leaderboard_message.clearReactions();
-          listenToLeaderboardReactions(guild, ironmanMode, leaderboard_message);
-        }
-
         // Remove user reactions
-        leaderboard_message.reactions.forEach((reaction) => {
-          reaction.fetchUsers().then((users) => {
-            users.forEach((user) => {
-              if (!user.bot) reaction.remove(user);
-            });
+        leaderboard_message.reactions.cache.forEach((reaction) => {
+          reaction.users.cache.forEach((user) => {
+            if (!user.bot) reaction.users.remove(user);
           });
         });
 
         /* DISABLED FOR NOW, ONLY NEEDED ON INITIAL RUN
-      // Add default reactions
-      const addReaction = (message, reaction, cb) =>{
-        setTimeout(async () => {
-          await message.react(reaction).catch(O_o=>{});
-          cb();
-        }, 100);
-      };
-    
-      const reactions = skills.filter(skill=>['Attack', 'Strength', 'Defence', 'Magic', 'Ranged', 'Hitpoints', 'Wealth'].includes(skill.name)).map(skill=>guild.emojis.get(skill.emoji));
-      reactions.reduce((promiseChain, reaction) => promiseChain.then(() => new Promise((resolve) => {
-        addReaction(leaderboard_message, reaction, resolve);
-      })), Promise.resolve());
-      //*/
+        // Add default reactions
+        const addReaction = (message, reaction, cb) =>{
+          setTimeout(async () => {
+            await message.react(reaction).catch(O_o=>{});
+            cb();
+          }, 100);
+        };
+      
+        const reactions = skills.filter(skill=>['Attack', 'Strength', 'Defence', 'Magic', 'Ranged', 'Hitpoints', 'Wealth'].includes(skill.name)).map(skill=>guild.emojis.get(skill.emoji));
+        reactions.reduce((promiseChain, reaction) => promiseChain.then(() => new Promise((resolve) => {
+          addReaction(leaderboard_message, reaction, resolve);
+        })), Promise.resolve());
+        */
 
         leaderboard_message.edit(output);
-      })
-      .catch((O_o) => {});
+      });
   });
 }
 
-async function listenToLeaderboardReactions(
-  guild,
-  ironmanMode,
-  leaderboard_message
-) {
-  const filter = (reaction, user) => !user.bot;
+async function listenToLeaderboardReactions(client) {
+  client.on("messageReactionAdd", async (reaction, user) => {
+    await reaction.fetch();
+    if (reaction.message.id === leaderboard_message_id) {
+      updateLeaderboard(client, "NONE", reaction.emoji.id);
+    }
+  });
+
+  /*const filter = (reaction, user) => !user.bot;
   leaderboard_message
     .awaitReactions(filter, { max: 1 })
     .then((collected) => {
       const reaction = collected.first();
       updateLeaderboard(guild, ironmanMode, reaction.emoji.id);
     })
-    .catch(error);
+    .catch(error);*/
 }
 
 module.exports = {
