@@ -192,6 +192,8 @@ function login(token, attempt = 1) {
       setTimeout(() => {
         login(token, ++attempt);
       }, minutes * 6e4);
+    } else {
+      error(`Login error: ${e}`);
     }
   });
 }
