@@ -206,19 +206,41 @@ function updateLeaderboard(client, ironmanMode = "NONE", reaction = "null") {
           });
         });
 
-        /* DISABLED FOR NOW, ONLY NEEDED ON INITIAL RUN
+        /*// DISABLED FOR NOW, ONLY NEEDED ON INITIAL RUN
         // Add default reactions
-        const addReaction = (message, reaction, cb) =>{
+        const addReaction = (message, reaction, cb) => {
           setTimeout(async () => {
-            await message.react(reaction).catch(O_o=>{});
+            console.log(reaction);
+            await message.react(reaction).catch((O_o) => {});
             cb();
           }, 100);
         };
-      
-        const reactions = skills.filter(skill=>['Attack', 'Strength', 'Defence', 'Magic', 'Ranged', 'Hitpoints', 'Wealth'].includes(skill.name)).map(skill=>guild.emojis.get(skill.emoji));
-        reactions.reduce((promiseChain, reaction) => promiseChain.then(() => new Promise((resolve) => {
-          addReaction(leaderboard_message, reaction, resolve);
-        })), Promise.resolve());
+
+        const reactions = skills
+          .filter((skill) =>
+            [
+              "Attack",
+              "Strength",
+              "Defence",
+              "Magic",
+              "Ranged",
+              "Hitpoints",
+              "Wealth",
+            ].includes(skill.name)
+          )
+          .map((skill) => {
+            return skill.emoji;
+          });
+        reactions.reduce(
+          (promiseChain, reaction) =>
+            promiseChain.then(
+              () =>
+                new Promise((resolve) => {
+                  addReaction(leaderboard_message, reaction, resolve);
+                })
+            ),
+          Promise.resolve()
+        );
         */
 
         leaderboard_message.edit(output);
