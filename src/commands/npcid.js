@@ -18,11 +18,6 @@ module.exports = {
 
     page = isNaN(page) ? 1 : +page;
 
-    // Fill table with data
-    var data = [ { name: 'bill' , sex:'M', income:50000 },
-    { name: 'sara' , sex:'F', income:100000 }];
-
-    // Do the query
     let data = JSON.parse(fs.readFileSync('./IdeaProjects/2009scape/Server/data/configs/npc_spawns.json', "utf8"));
     let results = alasql(`SELECT id, name, examine, lifepoints FROM ? WHERE name LIKE ? %${npc_name}%` ,[data]);
     //let results = await connection_server.query('SELECT id, name, examine, lifepoints FROM npc_configs WHERE name LIKE ?', [`%${npc_name}%`]).catch(error);
