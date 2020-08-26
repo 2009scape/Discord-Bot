@@ -8,12 +8,8 @@ module.exports = {
   botperms: ["SEND_MESSAGES"],
   userperms : ['ADMINISTRATOR'],
   execute : async (msg, args) => {
-    const match = args.join(' ').trim().match(/^([\sA-Z()+.\-_\d]{1,12})$/i);
 
-    if (!match)
-      return msg.channel.send('Invalid arguments specified.');
-
-    const [,player_name] = match.map(m=>m.trim().toLowerCase());
+    const player_name = args[0];
 
     if (player_name.length > 12)
       return msg.channel.send('Invalid arguments specified, Username too long.');
