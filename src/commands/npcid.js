@@ -1,6 +1,8 @@
 const { error } = require("../helpers/logging.js");
 const { tablePages, postPages } = require("../helpers/functions.js");
 const { connection_server } = require('../database.js');
+const alasql = require('alasql');
+const fs = require('fs');
 
 module.exports = {
   name        : 'npcid',
@@ -16,7 +18,14 @@ module.exports = {
 
     page = isNaN(page) ? 1 : +page;
 
-    let results = await connection_server.query('SELECT id, name, examine, lifepoints FROM npc_configs WHERE name LIKE ?', [`%${npc_name}%`]).catch(error);
+    // Fill table with data
+    var data = [ { name: 'bill' , sex:'M', income:50000 },
+    { name: 'sara' , sex:'F', income:100000 }];
+
+    // Do the query
+    let data = JSON.parse(fs.readFileSync('./IdeaProjects/2009scape/Server/data/configs/npc_spawns.json', "utf8"));
+    let results = alasql(`SELECT id, name, examine, lifepoints FROM ? WHERE name LIKE ? %${npc_name}%` ,[data]);
+    //let results = await connection_server.query('SELECT id, name, examine, lifepoints FROM npc_configs WHERE name LIKE ?', [`%${npc_name}%`]).catch(error);
 
     if (!results.length)
       return msg.channel.send('No npc found with a similar name.');
