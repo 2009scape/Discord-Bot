@@ -2,7 +2,7 @@ module.exports = {
   name: "confirm",
   aliases: [''],
   description: "Confirms the deletion of a user's account",
-  args: ['username'],
+  args: [],
   guildOnly: true,
   cooldown: 3,
   botperms: ["SEND_MESSAGES"],

@@ -1,5 +1,5 @@
 module.exports = {
-  name: "confirm",
+  name: "delete",
   aliases: [''],
   description: "Confirms the deletion of a user's account",
   args: ['username'],
