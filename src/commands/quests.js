@@ -6,7 +6,7 @@ module.exports = {
   guildOnly: true,
   cooldown: 3,
   botperms: ["SEND_MESSAGES"],
-  userperms: [""],
+  userperms: [],
   execute: async (msg) => {
     msg.channel.send(`
 Vampire Slayer | Sheep Shearer | The Restless Ghost
