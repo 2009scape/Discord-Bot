@@ -1,6 +1,9 @@
 const { tablePages, postPages } = require("../helpers/functions.js");
 const alasql = require('alasql');
 const fs = require('fs');
+const {
+  liveserver_configs_dir,
+} = require("../config.json");
 
 module.exports = {
   name        : 'npcid',
@@ -16,7 +19,7 @@ module.exports = {
 
     page = isNaN(page) ? 1 : +page;
 
-    let data = JSON.parse(fs.readFileSync('../IdeaProjects/2009scape/Server/data/configs/npc_configs.json', "utf8"));
+    let data = JSON.parse(fs.readFileSync(`${liveserver_configs_dir}/npc_configs.json`, "utf8"));
     let results = alasql(`SELECT id, name, examine, lifepoints FROM ? WHERE name LIKE "%${npc_name}%"`, [data.npc_configs]);
 
     if (!results.length)
