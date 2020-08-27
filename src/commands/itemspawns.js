@@ -22,9 +22,8 @@ module.exports = {
     // const results = await connection_server.query('SELECT item_id, name, loc_data AS spawns FROM `ground_spawns` LEFT JOIN `item_configs` ON item_configs.id = ground_spawns.item_id WHERE `item_id` = ?', [item_id]).catch(error);
     const results = await alasql
     .promise([
-      `SELECT item_id, item_configs.name, loc_data AS spawns FROM json('${liveserver_configs_dir}/ground_spawns.json') AS ground_spawns OUTER JOIN json('${liveserver_configs_dir}/item_configs') AS item_configs ON item_configs.id = ground_spawns.item_id`,
-    ]);  
-
+      `SELECT item_id, item_configs.name, loc_data AS spawns FROM json('${liveserver_configs_dir}/ground_spawns.json') AS ground_spawns OUTER JOIN json('${liveserver_configs_dir}/item_configs') AS item_configs ON item_configs.id = ground_spawns.item_id WHERE ground_spawns.item_id = "${item_id}"`,
+    ]);
 
     if (!results.length)
       return msg.channel.send('No item found with specified ID, or item has no spawns.');
