@@ -19,8 +19,7 @@ module.exports = {
 
     page = isNaN(page) ? 1 : +page;
 
-    let data = JSON.parse(fs.readFileSync(`${liveserver_configs_dir}/npc_configs.json`, "utf8"));
-    let results = alasql(`SELECT id, name, examine, lifepoints FROM ? WHERE name LIKE "%${npc_name}%"`, [data.npc_configs]);
+    let results = alasql(`SELECT id, name, examine, lifepoints FROM json('${liveserver_configs_dir}/npc_configs.json') WHERE name LIKE "%${npc_name}%"`);
 
     if (!results.length)
       return msg.channel.send('No npc found with a similar name.');
