@@ -27,6 +27,8 @@ module.exports = {
       `SELECT npc_id, name, loc_data AS spawns FROM json('${liveserver_configs_dir}/npc_spawns.json') AS npc_spawns LEFT JOIN json('${liveserver_configs_dir}/npc_configs.json') AS npc_configs ON npc_configs.id = npc_spawns.npc_id WHERE npc_spawns.npc_id = "${npc_id}"`,
     ][0]);
 
+
+    console.log(results);
     if (!results.length)
       return msg.channel.send('No npc found with specified ID, or npc has no spawns.');
 
