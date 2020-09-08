@@ -24,7 +24,7 @@ module.exports = {
     //const results = await connection_server.query('SELECT npc_id, name, loc_data AS spawns FROM `npc_spawns` LEFT JOIN `npc_configs` ON npc_configs.id = npc_spawns.npc_id WHERE `npc_id` = ?', [npc_id]).catch(error);
     const results = await alasql
     .promise([
-      `SELECT npc_id, name, loc_data AS spawns FROM json('${liveserver_configs_dir}/npc_spawns.json') AS npc_spawns FULL OUTER JOIN json('${liveserver_configs_dir}/npc_configs.json') AS npc_configs ON npc_configs.id = npc_spawns.npc_id WHERE npc_configs.npc_id = "${npc_id}"`,
+      `SELECT npc_id, name, loc_data AS spawns FROM json('${liveserver_configs_dir}/npc_spawns.json') AS npc_spawns FULL OUTER JOIN json('${liveserver_configs_dir}/npc_configs.json') AS npc_configs ON npc_configs.id = npc_spawns.npc_id WHERE npc_configs.id = "${npc_id}"`,
     ][0]);
 
 
