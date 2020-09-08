@@ -28,8 +28,7 @@ module.exports = {
     if (!results.length)
       return msg.channel.send('No item found with specified ID, or item has no spawns.');
 
-    console.log(results);
-    let spawns = results[0].spawns.replace(/{/g, '').replace(/}/g, '').split('-').map(d=>d.split(','));
+    let spawns = results[0][0].spawns.replace(/{/g, '').replace(/}/g, '').split('-').map(d=>d.split(','));
 
     spawns = spawns.filter(d=>!isNaN(d[0]) && d[0] > 0).map(spawn=>[
       spawn[0],
