@@ -1,6 +1,4 @@
-const { error } = require("../helpers/logging.js");
 const { tablePages, postPages } = require("../helpers/functions.js");
-const { connection_server } = require('../database.js');
 const alasql = require('alasql');
 const {
   liveserver_configs_dir,
