@@ -22,7 +22,7 @@ module.exports = {
     //const results = await connection_server.query("SELECT npc_id, name, CONCAT_WS('~', `default`, `main`, `charm`) AS drops FROM `npc_drops` LEFT JOIN `npc_configs` ON npc_configs.id = npc_drops.npc_id WHERE `npc_id` = ?", [npc_id]).catch(error);
     const results = await alasql
     .promise([
-      `SELECT npc_configs.npc_id, npc_configs.name, CONCAT_WS('~', 'drop_tables.default', 'drop_tables.main', 'drop_tables.charm') AS drops FROM json('${liveserver_configs_dir}/drop_tables.json') AS drop_tables LEFT JOIN json('${liveserver_configs_dir}/npc_configs.json') AS npc_configs ON npc_configs.id = drop_tables.npc_id WHERE drop_tables.npc_id = "${npc_id}"`,
+      `SELECT npc_configs.npc_id, npc_configs.name, CONCAT_WS('~', drop_tables.main, drop_tables.charm) AS drops FROM json('${liveserver_configs_dir}/drop_tables.json') AS drop_tables LEFT JOIN json('${liveserver_configs_dir}/npc_configs.json') AS npc_configs ON npc_configs.id = drop_tables.npc_id WHERE drop_tables.npc_id = "${npc_id}"`,
     ][0]);
 
     if (!results.length)
