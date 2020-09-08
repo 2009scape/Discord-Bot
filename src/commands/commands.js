@@ -2,8 +2,8 @@ const Discord = require('discord.js');
 const { prefix } = require('../config.json');
 
 module.exports = {
-  name        : 'help',
-  aliases     : ['commands', 'h'],
+  name        : 'commands',
+  aliases     : [],
   description : 'List all of my commands or info about a specific command.',
   args        : ['command_name?'],
   guildOnly   : false,

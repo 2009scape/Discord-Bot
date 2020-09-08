@@ -1,6 +1,6 @@
 module.exports = {
   name: "confirm",
-  aliases: [''],
+  aliases: [],
   description: "Confirms the deletion of a user's account",
   args: [],
   guildOnly: true,
