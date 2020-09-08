@@ -1,6 +1,10 @@
 const { error } = require("../helpers/logging.js");
 const { tablePages, postPages } = require("../helpers/functions.js");
 const { connection_server } = require('../database.js');
+const alasql = require('alasql');
+const {
+  liveserver_configs_dir,
+} = require("../config.json");
 
 module.exports = {
   name        : 'npcspawns',
@@ -17,7 +21,11 @@ module.exports = {
     npc_id = isNaN(npc_id) ? 1 : +npc_id;
     page = isNaN(page) ? 1 : +page;
 
-    const results = await connection_server.query('SELECT npc_id, name, loc_data AS spawns FROM `npc_spawns` LEFT JOIN `npc_configs` ON npc_configs.id = npc_spawns.npc_id WHERE `npc_id` = ?', [npc_id]).catch(error);
+    const results = await alasql
+    .promise([
+      `SELECT npc_id, npc_configs.name, loc_data AS spawns FROM json('${liveserver_configs_dir}/npc_spawns.json') AS npc_spawns LEFT JOIN json('${liveserver_configs_dir}/npc_configs.json') AS npc_configs ON npc_configs.id = npc_spawns.npc_id WHERE npc_configs.id = "${npc_id}"`,
+    ][0]);
+
 
     if (!results.length)
       return msg.channel.send('No npc found with specified ID, or npc has no spawns.');
