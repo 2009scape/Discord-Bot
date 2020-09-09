@@ -25,11 +25,13 @@ module.exports = {
 
     page = isNaN(page) ? 1 : +page;
 
-    let results = await alasql.promise
-      ([
-        //"SELECT id, name, tradeable, shop_price, grand_exchange_price FROM item_configs WHERE name LIKE ?",
-        `SELECT id, name, tradeable, shop_price, grand_exchange_price FROM json('${liveserver_configs_dir}/itemconfigs.json') WHERE name LIKE "%${item_name}%"`
-      ][0]);
+      //"SELECT id, name, tradeable, shop_price, grand_exchange_price FROM item_configs WHERE name LIKE ?",
+
+    let results = await alasql.promise(
+      [
+        `SELECT id, name, tradeable, shop_price, grand_exchange_price FROM json('${liveserver_configs_dir}/itemconfigs.json') WHERE name LIKE "%${item_name}%"`,
+      ][0]
+    );
 
     if (!results.length)
       return msg.channel.send("No items found with a similar name.");
