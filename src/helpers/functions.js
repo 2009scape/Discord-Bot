@@ -139,15 +139,15 @@ const postPages = async (msg, pages, page = 1) => {
     time: timer,
   });
 
-  backwards.on("collect", (r) => {
+  backwards.on("collect", (r, user) => {
     page = page <= 0 ? 0 : --page;
-    r.remove(msg.author.id).catch((O_o) => {});
+    r.remove(user.id).catch((O_o) => {});
     botMsg.edit(pages[page]);
   });
 
-  forwards.on("collect", (r) => {
+  forwards.on("collect", (r, user) => {
     page = page >= pages.length - 1 ? pages.length - 1 : ++page;
-    r.remove(msg.author.id).catch((O_o) => {});
+    r.remove(user.id).catch((O_o) => {});
     botMsg.edit(pages[page]);
   });
 
