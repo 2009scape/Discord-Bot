@@ -139,16 +139,9 @@ const postPages = async (msg, pages, page = 1) => {
     time: timer,
   });
 
-  backwards.on("collect", () => {
+  backwards.on("collect", (r, user) => {
     page = page <= 0 ? 0 : --page;
-    botMsg.reactions.cache.forEach(reaction => {
-      reaction.users.cache.forEach(user => {
-        console.log(user);
-        if (botMsg.author.id !== user) {
-          reaction.users.remove(user);
-        }
-      })
-    })
+    r.remove(user.id).catch((O_o) => {});
     botMsg.edit(pages[page]);
   });
 
