@@ -1,6 +1,6 @@
-const { error } = require("../helpers/logging.js");
 const { tablePages, postPages, RuneScape } = require("../helpers/functions.js");
-const { connection_server } = require("../database.js");
+const alasql = require("alasql");
+const { liveserver_configs_dir } = require("../config.json");
 
 module.exports = {
   name: "itemid",
@@ -25,12 +25,11 @@ module.exports = {
 
     page = isNaN(page) ? 1 : +page;
 
-    let results = await connection_server
-      .query(
-        "SELECT id, name, tradeable, shop_price, grand_exchange_price FROM item_configs WHERE name LIKE ?",
-        [`%${item_name}%`]
-      )
-      .catch(error);
+    let results = await alasql.promise
+      ([
+        //"SELECT id, name, tradeable, shop_price, grand_exchange_price FROM item_configs WHERE name LIKE ?",
+        `SELECT id, name, tradeable, shop_price, grand_exchange_price FROM json('${liveserver_configs_dir}/itemconfigs.json') WHERE name LIKE "%${item_name}%"`[0]
+      ]);
 
     if (!results.length)
       return msg.channel.send("No items found with a similar name.");
