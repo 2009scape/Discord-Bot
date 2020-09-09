@@ -143,6 +143,7 @@ const postPages = async (msg, pages, page = 1) => {
     page = page <= 0 ? 0 : --page;
     botMsg.reactions.cache.forEach(reaction => {
       reaction.users.cache.forEach(user => {
+        console.log(user);
         if (botMsg.author.id !== user) {
           reaction.users.remove(user);
         }
