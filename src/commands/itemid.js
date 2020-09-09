@@ -1,3 +1,4 @@
+const { error } = require("../helpers/logging.js");
 const { tablePages, postPages, RuneScape } = require("../helpers/functions.js");
 const alasql = require("alasql");
 const { liveserver_configs_dir } = require("../config.json");
@@ -31,7 +32,7 @@ module.exports = {
       [
         `SELECT id, name, tradeable, shop_price, grand_exchange_price FROM json('${liveserver_configs_dir}/itemconfigs.json') WHERE name LIKE "%${item_name}%"`,
       ][0]
-    );
+    ).catch(error);
 
     if (!results.length)
       return msg.channel.send("No items found with a similar name.");
