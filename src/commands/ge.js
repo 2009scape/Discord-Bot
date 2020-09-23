@@ -18,7 +18,7 @@ module.exports = {
 
     page = isNaN(page) ? 1 : +page;
 
-    const results = require(`${liveserver_eco_dir}/offer_dispatch.json`)
+    const results = require(`./${liveserver_eco_dir}/offer_dispatch.json`)
       .offers;
 
     if (!results.length)
