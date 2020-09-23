@@ -1,6 +1,10 @@
-const { tablePages, postPages, itemNameFromId } = require("../helpers/functions.js");
+const {
+  tablePages,
+  postPages,
+  itemNameFromId,
+} = require("../helpers/functions.js");
 const { liveserver_eco_dir } = require("../config.json");
-const fs = require('fs');
+const fs = require("fs");
 
 module.exports = {
   name: "grandexchange",
@@ -19,18 +23,29 @@ module.exports = {
 
     page = isNaN(page) ? 1 : +page;
 
-    const results = JSON.parse(fs.readFileSync(`./${liveserver_eco_dir}/offer_dispatch.json`, 'utf8')).offers;
+    const results = JSON.parse(
+      fs.readFileSync(`./${liveserver_eco_dir}/offer_dispatch.json`, "utf8")
+    ).offers;
 
     if (!results.length)
       return msg.channel.send("No items in the Grand Exchange");
 
     grand_exchange = [];
 
-    results.forEach(offer => {
+    results.forEach((offer) => {
       grand_exchange.push([itemNameFromId(offer.itemId), offer.amount]);
     });
 
     grand_exchange = grand_exchange.sort();
+
+    // Combine duplicates
+    grand_exchange.forEach((element, index) => {
+      if (grand_exchange[index][0] == grand_exchange[index + 1][0]) {
+        grand_exchange[index + 1][1] += grand_exchange[index][1];
+        grand_exchange[index][1] = 0;
+      }
+    });
+    grand_exchange = grand_exchange.filter((element) => element[1] > 0);
 
     const pages = await tablePages(
       ["Item Name", "Amount"],
