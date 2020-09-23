@@ -1,7 +1,6 @@
 const { table, getBorderCharacters } = require("table");
-const { error } = require("../helpers/logging.js");
-const alasql = require("alasql");
 const { liveserver_configs_dir } = require("../config.json");
+const fs = require('fs');
 
 function padNumber(num, len = 2, padding = "0") {
   return num.toString().padStart(len, padding);
@@ -164,7 +163,8 @@ const postPages = async (msg, pages, page = 1) => {
 };
 
 const itemNameFromId = (itemId) => {
-  const item_configs = require(`${liveserver_configs_dir}/item_configs.json`);
+  const item_configs = JSON.parse(fs.readFileSync(`./${liveserver_configs_dir}/item_configs.json`, 'utf8'));
+
   itemname = "Unknown Item Name"
   item_configs.forEach(config => {
     if (config.id === `${itemId}`) {
