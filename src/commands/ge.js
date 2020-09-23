@@ -30,6 +30,8 @@ module.exports = {
       grand_exchange.push([itemNameFromId(offer.itemId), offer.amount]);
     });
 
+    grand_exchange = grand_exchange.sort();
+
     const pages = await tablePages(
       ["Item Name", "Amount"],
       grand_exchange,
