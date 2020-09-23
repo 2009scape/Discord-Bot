@@ -164,14 +164,14 @@ const postPages = async (msg, pages, page = 1) => {
 };
 
 const itemNameFromId = (itemId) => {
-  let results = await alasql.promise(
-    [
-      `SELECT name FROM json('${liveserver_configs_dir}/item_configs.json') WHERE id = ${itemId}`,
-    ][0]
-  ).catch(error);
-
-  return results[0];
-}
+  const item_configs = require(`${liveserver_configs_dir}/item_configs.json`);
+  itemname = "Unknown Item Name"
+  item_configs.forEach(config => {
+    if (config.id === `${itemId}`) {
+      itemname = config.name;
+    }
+  });
+};
 
 module.exports = {
   padNumber,
@@ -180,4 +180,5 @@ module.exports = {
   RuneScape,
   tablePages,
   postPages,
+  itemNameFromId
 };
