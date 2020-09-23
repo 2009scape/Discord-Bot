@@ -1,6 +1,5 @@
-const { error } = require("../helpers/logging.js");
-const { tablePages, postPages } = require("../helpers/functions.js");
-const { connection, connection_server } = require("../database.js");
+const { tablePages, postPages, itemNameFromId } = require("../helpers/functions.js");
+const { liveserver_configs_dir } = require("../config.json");
 
 module.exports = {
   name: "grandexchange",
@@ -19,40 +18,17 @@ module.exports = {
 
     page = isNaN(page) ? 1 : +page;
 
-    const results = await connection
-      .query('SELECT ge FROM `members` WHERE ge IS NOT NULL AND ge <> ""')
-      .catch(error);
+    const results = require(`${liveserver_configs_dir}/../eco/offer_dispatch.json`)
+      .offers;
 
     if (!results.length)
       return msg.channel.send("No items in the Grand Exchange");
 
-    let grand_exchange = [];
-    results.forEach((r) => {
-      const list = r.ge
-        .split("|")
-        .filter((i) =>
-          type == "selling" ? i.includes("true") : i.includes("false")
-        )
-        .map((i) => i.split(",").map(JSON.parse));
-      list.forEach((item) => {
-        const ge_item = grand_exchange.find((ge_item) => ge_item[0] == item[0]);
-        if (!ge_item) return grand_exchange.push(item);
-        ge_item[1] += item[1];
-      });
+    grand_exchange = [];
+
+    results.forEach(offer => {
+      grand_exchange.push([itemNameFromId(offer.itemId), offer.amount]);
     });
-
-    const items = await connection_server.query(
-      `SELECT id, name FROM \`item_configs\` WHERE id IN(${grand_exchange
-        .map((d) => d[0])
-        .join(",")})`
-    );
-
-    grand_exchange = grand_exchange.map((ge_item) => [
-      (items.find((item) => item.id == ge_item[0]) || { name: ge_item[0] }).name
-        .toString()
-        .toLowerCase(),
-      ge_item[1],
-    ]);
 
     const pages = await tablePages(
       ["Item Name", "Amount"],

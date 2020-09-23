@@ -1,4 +1,7 @@
 const { table, getBorderCharacters } = require("table");
+const { error } = require("../helpers/logging.js");
+const alasql = require("alasql");
+const { liveserver_configs_dir } = require("../config.json");
 
 function padNumber(num, len = 2, padding = "0") {
   return num.toString().padStart(len, padding);
@@ -76,7 +79,6 @@ const tablePages = async (
   let pages = [],
     slicePage = 0,
     currentPage = 0;
-
   results.forEach((result, index) => {
     let temp = [
       prefixMessage,
@@ -160,6 +162,16 @@ const postPages = async (msg, pages, page = 1) => {
     })
   );
 };
+
+const itemNameFromId = (itemId) => {
+  let results = await alasql.promise(
+    [
+      `SELECT name FROM json('${liveserver_configs_dir}/item_configs.json') WHERE id = ${itemId}`,
+    ][0]
+  ).catch(error);
+
+  return results[0];
+}
 
 module.exports = {
   padNumber,
