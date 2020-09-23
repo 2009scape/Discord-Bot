@@ -1,5 +1,5 @@
 const { tablePages, postPages, itemNameFromId } = require("../helpers/functions.js");
-const { liveserver_configs_dir } = require("../config.json");
+const { liveserver_eco_dir } = require("../config.json");
 
 module.exports = {
   name: "grandexchange",
@@ -18,7 +18,7 @@ module.exports = {
 
     page = isNaN(page) ? 1 : +page;
 
-    const results = require(`${liveserver_configs_dir}/../eco/offer_dispatch.json`)
+    const results = require(`${liveserver_eco_dir}/offer_dispatch.json`)
       .offers;
 
     if (!results.length)
