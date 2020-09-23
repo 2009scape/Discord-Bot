@@ -41,7 +41,7 @@ module.exports = {
     // Combine duplicates
     grand_exchange.forEach((element, index) => {
       if (grand_exchange[index + 1] && grand_exchange[index][0] == grand_exchange[index + 1][0]) {
-        grand_exchange[index + 1][1] += grand_exchange[index][1];
+        grand_exchange[index + 1][1] = `${Number(grand_exchange[index + 1][1]) + Number(grand_exchange[index][1])}`;
         grand_exchange[index][1] = 0;
       }
     });
