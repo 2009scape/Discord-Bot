@@ -1,5 +1,6 @@
 const { tablePages, postPages, itemNameFromId } = require("../helpers/functions.js");
 const { liveserver_eco_dir } = require("../config.json");
+const fs = require('fs');
 
 module.exports = {
   name: "grandexchange",
@@ -18,8 +19,7 @@ module.exports = {
 
     page = isNaN(page) ? 1 : +page;
 
-    const results = require(`./${liveserver_eco_dir}/offer_dispatch.json`)
-      .offers;
+    const results = JSON.parse(fs.readFileSync(`./${liveserver_eco_dir}/offer_dispatch.json`, 'utf8')).offers;
 
     if (!results.length)
       return msg.channel.send("No items in the Grand Exchange");
