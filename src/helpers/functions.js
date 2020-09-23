@@ -171,6 +171,7 @@ const itemNameFromId = (itemId) => {
       itemname = config.name;
     }
   });
+  return itemname;
 };
 
 module.exports = {
