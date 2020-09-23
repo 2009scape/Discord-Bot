@@ -39,11 +39,8 @@ module.exports = {
     grand_exchange = grand_exchange.sort();
 
     // Combine duplicates
-    console.log(grand_exchange)
-    console.log(grand_exchange[0])
     grand_exchange.forEach((element, index) => {
-      console.log(grand_exchange[index])
-      if (grand_exchange[index][0] == grand_exchange[index + 1][0]) {
+      if (grand_exchange[index + 1] && grand_exchange[index][0] == grand_exchange[index + 1][0]) {
         grand_exchange[index + 1][1] += grand_exchange[index][1];
         grand_exchange[index][1] = 0;
       }
