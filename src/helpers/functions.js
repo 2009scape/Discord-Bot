@@ -1,4 +1,6 @@
 const { table, getBorderCharacters } = require("table");
+const { liveserver_configs_dir } = require("../config.json");
+const fs = require('fs');
 
 function padNumber(num, len = 2, padding = "0") {
   return num.toString().padStart(len, padding);
@@ -76,7 +78,6 @@ const tablePages = async (
   let pages = [],
     slicePage = 0,
     currentPage = 0;
-
   results.forEach((result, index) => {
     let temp = [
       prefixMessage,
@@ -161,6 +162,18 @@ const postPages = async (msg, pages, page = 1) => {
   );
 };
 
+const itemNameFromId = (itemId) => {
+  const item_configs = JSON.parse(fs.readFileSync(`./${liveserver_configs_dir}/item_configs.json`, 'utf8'));
+
+  itemname = "Unknown Item Name"
+  item_configs.forEach(config => {
+    if (config.id === `${itemId}`) {
+      itemname = config.name;
+    }
+  });
+  return itemname;
+};
+
 module.exports = {
   padNumber,
   toTableString,
@@ -168,4 +181,5 @@ module.exports = {
   RuneScape,
   tablePages,
   postPages,
+  itemNameFromId
 };

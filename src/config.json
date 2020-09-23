@@ -6,5 +6,6 @@
   "leaderboard_ultimate_ironman_message_id": "738542469506924642",
   "leaderboard_hardcore_ironman_message_id": "738543182039744634",
   "daily_message_channel_id": "697585326390247438",
-  "liveserver_configs_dir": "../IdeaProjects/2009scape/Server/data/configs"
+  "liveserver_configs_dir": "../IdeaProjects/2009scape/Server/data/configs",
+  "liveserver_eco_dir": "../IdeaProjects/2009scape/Server/data/eco"
 }
