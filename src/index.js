@@ -108,6 +108,8 @@ client
 
     if (!command) return;
 
+    info(`Running resolved command [${command}]!`);
+
     if (command.guildOnly && message.channel.type !== "text") {
       return message.channel.send("I can't execute that command inside DMs!");
     }
