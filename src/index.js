@@ -58,7 +58,7 @@ client.once("ready", async () => {
         .catch(error);
       const players = results[0] ? results[0].players : 0;
       client.user.setActivity(
-        `${players} Player${players != 1 ? "s" : ""} Online`
+        `Hop on and join us! <3`
       );
     },
     true
