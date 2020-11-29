@@ -162,7 +162,7 @@ const postPages = async (msg, pages, page = 1) => {
   );
 };
 
-const itemid_name_map;
+let itemid_name_map;
 const itemNameFromId = (itemId) => {
   if (!itemid_name_map) {
     console.log("Building map");
