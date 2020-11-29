@@ -58,7 +58,7 @@ client.once("ready", async () => {
         .catch(error);
       const players = results[0] ? results[0].players : 0;
       client.user.setActivity(
-        `${players} Player${players != 1 ? "s" : ""} Online`
+        `Hop on and join us! <3`
       );
     },
     true
@@ -107,6 +107,8 @@ client
       );
 
     if (!command) return;
+
+    info(`Running resolved command [${commandName}]!`);
 
     if (command.guildOnly && message.channel.type !== "text") {
       return message.channel.send("I can't execute that command inside DMs!");

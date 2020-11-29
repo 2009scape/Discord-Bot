@@ -19,6 +19,7 @@ Rune Mystery | Sheep Herder | Wolf Whistle
 Sheild of Arrav | Prince Ali Rescue | Gertrude's cat
 Priest in peril | Witch's Potion | Demon slayer
 Animal Magnetism | The Knight's sword | Goblin Diplomacy
-Dragon Slayer | Imp Catcher |  Drudic Ritual`);
+Dragon Slayer | Imp Catcher |  Drudic Ritual
+Fishing Contest`);
   },
 };

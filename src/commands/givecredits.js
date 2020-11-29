@@ -3,7 +3,7 @@ const { connection } = require('../database.js');
 
 module.exports = {
   name        : 'givecredits',
-  aliases     : ['give_credits'],
+  aliases     : ['give_credits, givecredit'],
   description : 'Give a player in-game credits via username',
   args        : ['username', 'amount'],
   guildOnly   : true,
