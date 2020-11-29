@@ -34,11 +34,9 @@ module.exports = {
 
     grand_exchange = [];
 
-    console.log("Putting all the offers in a list..? (should be hashmap maybe)");
     results.forEach((offer) => {
       grand_exchange.push([itemNameFromId(offer.itemId), offer.amount]);
     });
-    console.log("Done putting into a list");
 
     grand_exchange = grand_exchange.sort();
 
