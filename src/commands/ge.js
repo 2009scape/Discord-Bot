@@ -23,8 +23,6 @@ module.exports = {
 
     page = isNaN(page) ? 1 : +page;
 
-    msg.channel.send("Loading GE.. Hold tight!");
-
     const results = JSON.parse(
       fs.readFileSync(`./${liveserver_eco_dir}/offer_dispatch.json`, "utf8")
     ).offers;
