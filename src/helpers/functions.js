@@ -162,10 +162,11 @@ const postPages = async (msg, pages, page = 1) => {
   );
 };
 
-const itemid_name_map = {};
+const itemid_name_map;
 const itemNameFromId = (itemId) => {
   if (!itemid_name_map) {
     console.log("Building map");
+    itemid_name_map = {};
     const item_configs = JSON.parse(fs.readFileSync(`./${liveserver_configs_dir}/item_configs.json`, 'utf8'));
     item_configs.forEach(config => {
       itemid_name_map[config.id] = config.name;
