@@ -5,7 +5,7 @@ const {
   timeFromDates,
 } = require("../helpers/functions.js");
 const { connection } = require("../database.js");
-const rights = ["none", "moderator", "administrator"];
+const rights = ["moderator", "administrator"];
 
 module.exports = {
   name: "playerlist",
