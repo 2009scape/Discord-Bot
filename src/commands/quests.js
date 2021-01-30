@@ -20,6 +20,6 @@ Sheild of Arrav | Prince Ali Rescue | Gertrude's cat
 Priest in peril | Witch's Potion | Demon slayer
 Animal Magnetism | The Knight's sword | Goblin Diplomacy
 Dragon Slayer | Imp Catcher |  Drudic Ritual
-Fishing Contest | All Fired Up`);
+Fishing Contest | All Fired Up | Lost Tribe`);
   },
 };
