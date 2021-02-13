@@ -9,17 +9,17 @@ module.exports = {
   userperms: [],
   execute: async (msg) => {
     msg.channel.send(`
-Vampire Slayer | Sheep Shearer | The Restless Ghost
-Doric's Quest | WaterFall Quest | Witch's House
-What Lies Below | The Tourist Trap | Dwarf Cannon
-Lost City | Cook's Assistant | Ernest the Chicken
-Roving Elves | Merlin's Crystal | Jungle Potion
-Black Knight's Fortress | Pirate's Treasure
-Rune Mystery | Sheep Herder | Wolf Whistle
-Sheild of Arrav | Prince Ali Rescue | Gertrude's cat
-Priest in peril | Witch's Potion | Demon slayer
-Animal Magnetism | The Knight's sword | Goblin Diplomacy
-Dragon Slayer | Imp Catcher |  Drudic Ritual
-Fishing Contest | All Fired Up | Lost Tribe`);
+All Fired Up | Animal Magnetism | Black Knight's Fortress  
+Cook's Assistant | Demon slayer | Doric's Quest  
+Dragon Slayer | Drudic Ritual | Dwarf Cannon 
+Ernest the Chicken | Fishing Contest | Gertrude's cat 
+Goblin Diplomacy | Imp Catcher | Jungle Potion 
+Lost Tribe | Lost City | Merlin's Crystal  
+Pirate's Treasure | Priest in peril | Prince Ali Rescue  
+Roving Elves | Rune Mystery | Sheep Herder 
+Sheep Shearer | Sheild of Arrav | The Knight's sword 
+The Restless Ghost | The Tourist Trap | Vampire Slayer  
+WaterFall Quest | What Lies Below | Witch's House 
+Witch's Potion | Wolf Whistle`);
   },
 };
