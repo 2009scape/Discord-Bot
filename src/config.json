@@ -7,5 +7,7 @@
   "leaderboard_hardcore_ironman_message_id": "738543182039744634",
   "daily_message_channel_id": "697585326390247438",
   "world1_configs_dir": "../IdeaProjects/2009scape/Server/data/configs",
-  "world1_eco_dir": "../IdeaProjects/2009scape/Server/data/eco"
+  "world1_eco_dir": "../IdeaProjects/2009scape/Server/data/eco",
+  "world2_configs_dir": "../IdeaProjects/2009scape/Server/data/inauthentic/configs",
+  "world2_eco_dir": "../IdeaProjects/2009scape/Server/data/inauthentic/eco"
 }
