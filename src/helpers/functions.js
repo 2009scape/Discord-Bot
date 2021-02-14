@@ -1,5 +1,5 @@
 const { table, getBorderCharacters } = require("table");
-const { liveserver_configs_dir } = require("../config.json");
+const { world1_configs_dir } = require("../config.json");
 const fs = require('fs');
 
 function padNumber(num, len = 2, padding = "0") {
@@ -166,7 +166,7 @@ let itemid_name_map;
 const itemNameFromId = (itemId) => {
   if (!itemid_name_map) {
     itemid_name_map = {};
-    const item_configs = JSON.parse(fs.readFileSync(`./${liveserver_configs_dir}/item_configs.json`, 'utf8'));
+    const item_configs = JSON.parse(fs.readFileSync(`./${world1_configs_dir}/item_configs.json`, 'utf8'));
     item_configs.forEach(config => {
       itemid_name_map[config.id] = config.name;
     });  

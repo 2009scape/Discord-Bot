@@ -3,7 +3,7 @@ const {
   postPages,
   itemNameFromId,
 } = require("../helpers/functions.js");
-const { liveserver_eco_dir } = require("../config.json");
+const { world1_eco_dir } = require("../config.json");
 const fs = require("fs");
 
 module.exports = {
@@ -24,7 +24,7 @@ module.exports = {
     page = isNaN(page) ? 1 : +page;
 
     const results = JSON.parse(
-      fs.readFileSync(`./${liveserver_eco_dir}/offer_dispatch.json`, "utf8")
+      fs.readFileSync(`./${world1_eco_dir}/offer_dispatch.json`, "utf8")
     ).offers;
 
     if (!results.length)

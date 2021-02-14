@@ -1,6 +1,6 @@
 const { tablePages, postPages } = require("../helpers/functions.js");
 const alasql = require("alasql");
-const { liveserver_configs_dir } = require("../config.json");
+const { world1_configs_dir } = require("../config.json");
 
 module.exports = {
   name: "npcid",
@@ -21,7 +21,7 @@ module.exports = {
 
     let results = await alasql.promise(
       [
-        `SELECT id, name, examine, lifepoints FROM json('${liveserver_configs_dir}/npc_configs.json') WHERE name LIKE "%${npc_name}%"`,
+        `SELECT id, name, examine, lifepoints FROM json('${world1_configs_dir}/npc_configs.json') WHERE name LIKE "%${npc_name}%"`,
       ][0]
     );
 
