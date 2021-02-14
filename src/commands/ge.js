@@ -53,6 +53,6 @@ module.exports = {
       `__***Current items in world ${world} Grand Exchange for ${type.toLowerCase()}:***__`
     );
 
-    postPages(msg, pages, world);
+    postPages(msg, pages);
   },
 };
