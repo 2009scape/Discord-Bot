@@ -33,7 +33,9 @@ module.exports = {
     grand_exchange = [];
 
     results.forEach((offer) => {
-      grand_exchange.push([itemNameFromId(offer.itemId), offer.amount]);
+      if (type === "selling" && offer.sale || type === "buying" && !offer.sale) {
+        grand_exchange.push([itemNameFromId(offer.itemId), offer.amount]);
+      }
     });
 
     grand_exchange = grand_exchange.sort();
