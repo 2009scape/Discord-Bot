@@ -1,7 +1,7 @@
 const { tablePages, postPages } = require("../helpers/functions.js");
 const alasql = require('alasql');
 const {
-  liveserver_configs_dir,
+  world1_configs_dir,
 } = require("../config.json");
 
 module.exports = {
@@ -21,7 +21,7 @@ module.exports = {
 
     const results = await alasql
     .promise([
-      `SELECT npc_id, npc_configs.name, loc_data AS spawns FROM json('${liveserver_configs_dir}/npc_spawns.json') AS npc_spawns LEFT JOIN json('${liveserver_configs_dir}/npc_configs.json') AS npc_configs ON npc_configs.id = npc_spawns.npc_id WHERE npc_configs.id = "${npc_id}"`,
+      `SELECT npc_id, npc_configs.name, loc_data AS spawns FROM json('${world1_configs_dir}/npc_spawns.json') AS npc_spawns LEFT JOIN json('${world1_configs_dir}/npc_configs.json') AS npc_configs ON npc_configs.id = npc_spawns.npc_id WHERE npc_configs.id = "${npc_id}"`,
     ][0]);
 
 

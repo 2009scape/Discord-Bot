@@ -3,28 +3,28 @@ const {
   postPages,
   itemNameFromId,
 } = require("../helpers/functions.js");
-const { liveserver_eco_dir } = require("../config.json");
+const { world1_eco_dir, world2_eco_dir } = require("../config.json");
 const fs = require("fs");
 
 module.exports = {
   name: "grandexchange",
   aliases: ["grand_exchange", "ge"],
   description: "Get a list of items in the Grand Exchange",
-  args: ["buying|selling", "page?"],
+  args: ["buying|selling", "world?"],
   guildOnly: true,
   cooldown: 3,
   botperms: ["SEND_MESSAGES"],
   userperms: [],
   execute: async (msg, args) => {
-    let [type, page = 1] = args;
+    let [type, world = 1] = args;
 
     if (!["buying", "selling"].includes(type))
       return msg.channel.send("First argument must be `buying` or `selling`.");
 
-    page = isNaN(page) ? 1 : +page;
+    world = isNaN(world) ? 1 : +world;
 
     const results = JSON.parse(
-      fs.readFileSync(`./${liveserver_eco_dir}/offer_dispatch.json`, "utf8")
+      fs.readFileSync(`./${world === 1 ? world1_eco_dir : world2_eco_dir}/offer_dispatch.json`, "utf8")
     ).offers;
 
     if (!results.length)
@@ -33,7 +33,9 @@ module.exports = {
     grand_exchange = [];
 
     results.forEach((offer) => {
-      grand_exchange.push([itemNameFromId(offer.itemId), offer.amount]);
+      if (type === "selling" && offer.sale || type === "buying" && !offer.sale) {
+        grand_exchange.push([itemNameFromId(offer.itemId), offer.amount]);
+      }
     });
 
     grand_exchange = grand_exchange.sort();
@@ -50,9 +52,9 @@ module.exports = {
     const pages = await tablePages(
       ["Item Name", "Amount"],
       grand_exchange,
-      `__***Current items in Grand Exchange for ${type.toLowerCase()}:***__`
+      `__***Current items in world ${world} Grand Exchange for ${type.toLowerCase()}:***__`
     );
 
-    postPages(msg, pages, page);
+    postPages(msg, pages);
   },
 };

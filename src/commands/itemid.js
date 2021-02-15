@@ -1,7 +1,7 @@
 const { error } = require("../helpers/logging.js");
 const { tablePages, postPages, RuneScape } = require("../helpers/functions.js");
 const alasql = require("alasql");
-const { liveserver_configs_dir } = require("../config.json");
+const { world1_configs_dir } = require("../config.json");
 
 module.exports = {
   name: "itemid",
@@ -30,7 +30,7 @@ module.exports = {
 
     let results = await alasql.promise(
       [
-        `SELECT id, name, tradeable, shop_price, grand_exchange_price FROM json('${liveserver_configs_dir}/item_configs.json') WHERE name LIKE "%${item_name}%"`,
+        `SELECT id, name, tradeable, shop_price, grand_exchange_price FROM json('${world1_configs_dir}/item_configs.json') WHERE name LIKE "%${item_name}%"`,
       ][0]
     ).catch(error);
 
