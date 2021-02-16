@@ -34,7 +34,7 @@ module.exports = {
 
     results.forEach((offer) => {
       if (type === "selling" && offer.sale || type === "buying" && !offer.sale) {
-        grand_exchange.push([itemNameFromId(offer.itemId), offer.amount]);
+        grand_exchange.push([itemNameFromId(offer.itemId), Number(offer.amount) - Number(offer.completedAmount)]);
       }
     });
 
@@ -42,7 +42,7 @@ module.exports = {
 
     // Combine duplicates
     grand_exchange.forEach((element, index) => {
-      if (grand_exchange[index + 1] && grand_exchange[index][0] == grand_exchange[index + 1][0]) {
+      if (grand_exchange[index + 1] && grand_exchange[index][0] === grand_exchange[index + 1][0]) {
         grand_exchange[index + 1][1] = `${Number(grand_exchange[index + 1][1]) + Number(grand_exchange[index][1])}`;
         grand_exchange[index][1] = 0;
       }
