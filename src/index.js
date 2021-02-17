@@ -114,6 +114,8 @@ client
       return message.channel.send("I can't execute that command inside DMs!");
     }
 
+    console.log(message.channel.type);
+    console.log(message.channel.memberPermissions(message.member).serialize());
     if (
       message.channel.type === "text" &&
       message.channel
