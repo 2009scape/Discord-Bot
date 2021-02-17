@@ -29,9 +29,10 @@ module.exports = {
     if (!results.length)
       return msg.channel.send("No players currently online.");
 
+    const rights = ["moderator", "administrator"];
     const players = results.map((r) => [
       r.username,
-      ["moderator", "administrator"][Math.min(rights.length, Math.max(0, +r.rights))],
+      rights[Math.min(rights.length, Math.max(0, +r.rights))],
       r.ironManMode.toLowerCase(),
       timeFromDates(+r.lastLogin || Date.now()),
       timeFromDates((+r.lastLogin || Date.now()) - (+r.timePlayed || 0)),
