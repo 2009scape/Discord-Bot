@@ -33,14 +33,16 @@ module.exports = {
     grand_exchange = [];
 
     results.forEach((offer) => {
-      grand_exchange.push([itemNameFromId(offer.itemId), offer.amount]);
+      if (type === "selling" && offer.sale || type === "buying" && !offer.sale) {
+        grand_exchange.push([itemNameFromId(offer.itemId), Number(offer.amount) - Number(offer.completedAmount)]);
+      }
     });
 
     grand_exchange = grand_exchange.sort();
 
     // Combine duplicates
     grand_exchange.forEach((element, index) => {
-      if (grand_exchange[index + 1] && grand_exchange[index][0] == grand_exchange[index + 1][0]) {
+      if (grand_exchange[index + 1] && grand_exchange[index][0] === grand_exchange[index + 1][0]) {
         grand_exchange[index + 1][1] = `${Number(grand_exchange[index + 1][1]) + Number(grand_exchange[index][1])}`;
         grand_exchange[index][1] = 0;
       }

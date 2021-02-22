@@ -5,7 +5,6 @@ const {
   timeFromDates,
 } = require("../helpers/functions.js");
 const { connection } = require("../database.js");
-const rights = ["moderator", "administrator"];
 
 module.exports = {
   name: "playerlist",
@@ -15,7 +14,7 @@ module.exports = {
   guildOnly: true,
   cooldown: 30,
   botperms: ["SEND_MESSAGES"],
-  userperms: [],
+  userperms: ["MANAGE_MESSAGES"],
   execute: async (msg, args) => {
     let [page = 1] = args;
 
@@ -30,6 +29,7 @@ module.exports = {
     if (!results.length)
       return msg.channel.send("No players currently online.");
 
+    const rights = ["none", "moderator", "administrator"];
     const players = results.map((r) => [
       r.username,
       rights[Math.min(rights.length, Math.max(0, +r.rights))],

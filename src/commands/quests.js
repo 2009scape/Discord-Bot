@@ -17,7 +17,7 @@ Goblin Diplomacy | Imp Catcher | Jungle Potion
 Lost Tribe | Lost City | Merlin's Crystal  
 Pirate's Treasure | Priest in peril | Prince Ali Rescue  
 Roving Elves | Rune Mystery | Sheep Herder 
-Sheep Shearer | Sheild of Arrav | The Knight's sword 
+Sheep Shearer | Shield of Arrav | The Knight's sword 
 The Restless Ghost | The Tourist Trap | Vampire Slayer  
 WaterFall Quest | What Lies Below | Witch's House 
 Witch's Potion | Wolf Whistle`);
