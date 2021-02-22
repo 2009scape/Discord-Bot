@@ -9,7 +9,7 @@ const rights = ["moderator", "administrator"];
 
 module.exports = {
   name: "playerlist",
-  aliases: ["playerslist"],
+  aliases: ["playerslist", "listplayers", "playersonline"],
   description: "Get a list of players online",
   args: ["page?"],
   guildOnly: true,
