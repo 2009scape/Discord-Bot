@@ -9,7 +9,7 @@ module.exports = {
   guildOnly   : true,
   cooldown    : 3,
   botperms    : ['SEND_MESSAGES'],
-  userperms   : ["moderator", "administrator"],
+  userperms: ["MANAGE_MESSAGES"],
   execute     : async (msg, args) => {
     const results = await connection.query('SELECT COUNT(*) AS amount, rights FROM `members` WHERE online=1 GROUP BY rights ORDER BY rights ASC').catch(error);
 

@@ -6,7 +6,7 @@ module.exports = {
   guildOnly   : true,
   cooldown    : 3,
   botperms    : ['SEND_MESSAGES'],
-  userperms   : ['ADMINISTRATOR'],
+  userperms: ["MANAGE_MESSAGES"],
   execute     : async (msg, args) => {
     msg.channel.send('Exiting...').then(()=>process.exit(0));
   },

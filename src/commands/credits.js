@@ -9,7 +9,7 @@ module.exports = {
   guildOnly   : true,
   cooldown    : 3,
   botperms    : ['SEND_MESSAGES'],
-  userperms   : ['ADMINISTRATOR'],
+  userperms: ["MANAGE_MESSAGES"],
   execute     : async (msg, args) => {
     const player_name = args.join(' ').trim().toLowerCase();
 

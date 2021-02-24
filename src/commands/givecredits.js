@@ -9,7 +9,7 @@ module.exports = {
   guildOnly   : true,
   cooldown    : 3,
   botperms    : ['SEND_MESSAGES'],
-  userperms   : ['ADMINISTRATOR'],
+  userperms: ["MANAGE_MESSAGES"],
   execute     : async (msg, args) => {
     const match = args.join(' ').trim().match(/^([\sA-Z()+.\-_\d]{1,12})\s+(-?\d+)$/i);
 
