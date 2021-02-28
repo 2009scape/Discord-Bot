@@ -30,7 +30,7 @@ module.exports = {
 
     results = results.map((npc) => [
       npc.id,
-      `${npc.lifepoints.toString().padEnd(4, " ")}♥`,
+      `${(npc.lifepoints || "").toString().padEnd(4, " ")}♥`,
       npc.name.toLowerCase(),
       (npc.examine || "").toLowerCase().replace(/'/g, ""),
     ]);
