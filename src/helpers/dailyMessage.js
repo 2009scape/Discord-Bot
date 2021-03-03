@@ -2,7 +2,6 @@ const { error } = require("./logging.js");
 const { daily_message_channel_id } = require("../config.json");
 
 function dailyMessage(client) {
-  // Get the leaderboard channel
   client.channels
     .fetch(daily_message_channel_id)
     .then((daily_message_channel) => {

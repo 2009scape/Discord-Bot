@@ -1,13 +1,9 @@
 require("dotenv").config();
 const fs = require("fs");
 const Discord = require("discord.js");
-const { prefix, leaderboard_message_id } = require("./config.json");
+const { prefix } = require("./config.json");
 const { info, warn, error } = require("./helpers/logging.js");
 const RunOnInterval = require("./helpers/RunOnInterval.class.js");
-const {
-  updateLeaderboard,
-  listenToLeaderboardReactions,
-} = require("./helpers/leaderboard");
 const { dailyMessage } = require("./helpers/dailyMessage");
 const { connection } = require("./database.js");
 
@@ -31,7 +27,6 @@ const cooldowns = new Discord.Collection();
 client.once("ready", async () => {
   info(`Logged in as ${client.user.tag}!`);
 
-  listenToLeaderboardReactions(client);
   // Start our functions that run on specific intervals
   new RunOnInterval(
     9 * 60 * 6e4, //9 hours
@@ -39,16 +34,6 @@ client.once("ready", async () => {
       dailyMessage(client);
     },
     false
-  );
-  new RunOnInterval(
-    60 * 6e4, //1 Hour
-    () => {
-      updateLeaderboard(client, "NONE");
-      updateLeaderboard(client, "STANDARD");
-      updateLeaderboard(client, "ULTIMATE");
-      updateLeaderboard(client, "HARDCORE");
-    },
-    true
   );
   new RunOnInterval(
     6e4, //1 Minute

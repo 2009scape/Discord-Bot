@@ -9,7 +9,3 @@ Make sure you've set node to version >= 12
 3. Run `yarn start` or `npm start`
 
 For maximum Pog, run `while true; do git pull ; yarn start; done` instead.
-
-## Setting up the Leaderboard
-
-The leaderboard needs a post to start editing. Run `::post #channel-name` to make the bot create a post, then right click the post and copy the post ID. Put a different  ID in each of the required `config.json` ids.
