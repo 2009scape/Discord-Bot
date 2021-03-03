@@ -9,7 +9,7 @@ function dailyMessage(client) {
         return error("Daily message channel not found!");
 
       daily_message_channel.send(
-        "__**Don't forget to vote daily!**__\n_or i'll delete your runescape account..._\nhttps://www.runelocus.com/top-rsps-list/vote-46171/"
+        "__**Don't forget to vote daily!**__\n_make sure you screenshot the vote and post inside #claim-to-fame..._\nhttps://www.runelocus.com/top-rsps-list/vote-46171"
       );
     });
 }
