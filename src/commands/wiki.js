@@ -8,7 +8,7 @@ module.exports = {
   botperms    : ['SEND_MESSAGES'],
   userperms   : [],
   execute     : async (msg, args) =>  msg.channel.send([
-    'https://github.com/2009scape/2009Scape/wiki',
-    'https://runescape.wiki/ then find the page you are looking for and add `?action=history&year=2009&month=1` to the end of the URI',
+    'To access the Rs Wiki in 2009, you do so by adding this as a bookmark in your web browser and then clicking when you are viewing a Rs Wiki page: ',
+    "javascript:window.location.href+='?action=history&year=2009&month=1';",
   ]),
 };
