@@ -9,8 +9,8 @@ module.exports = {
   userperms: [],
   execute: async (msg) => {
     msg.channel.send(`
- All Fired Up | Agility Pyramid | Fish Trawlers |
- Gnome Restaraunt | Pest Control | Pyramid Plunder | 
- Sorcerer's Garden`);
+  Agility Pyramid | All Fired Up | Brimhaven Course | Fish Trawlers |
+  Mage Training Arena | Gnome Restaraunt | Pest Control | 
+  Pyramid Plunder | Sorcerer's Garden`);
   },
 };
