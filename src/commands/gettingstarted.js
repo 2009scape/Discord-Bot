@@ -8,6 +8,6 @@ module.exports = {
   botperms: ["SEND_MESSAGES"],
   userperms: [],
   execute: async (msg) => {
-    msg.channel.send("https://2009scape.org/site/kbase/guid/how_do_i_get_started0.html");
+    msg.channel.send("https://2009scape.org/site/game_guide/how_do_i_get_started0.html");
   },
 };
