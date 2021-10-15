@@ -12,6 +12,6 @@ module.exports = {
   Agility Pyramid | All Fired Up | Brimhaven Course | 
   Fish Trawlers | Mage Training Arena | Mage Arena |
   Gnome Restaraunt | Pest Control | Pyramid Plunder | 
-  Sorcerer's Garden`);
+  Sorcerer's Garden | Vine Sweeper`);
   },
 };
