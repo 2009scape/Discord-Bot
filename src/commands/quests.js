@@ -12,8 +12,8 @@ module.exports = {
 All Fired Up | Animal Magnetism | Black Knight's Fortress  
 Cook's Assistant | Demon slayer | Doric's Quest  
 Dragon Slayer | Drudic Ritual | Dwarf Cannon 
-Ernest the Chicken | Fishing Contest | Gertrude's cat 
-Goblin Diplomacy | Imp Catcher | Jungle Potion 
+Ernest the Chicken | Family Crest | Fishing Contest | 
+Gertrude's cat |Goblin Diplomacy | Imp Catcher | Jungle Potion 
 Lost Tribe | Lost City | Merlin's Crystal 
 Nature Spirit | Pirate's Treasure | Priest in peril
 Prince Ali Rescue | Roving Elves | Rune Mystery 
